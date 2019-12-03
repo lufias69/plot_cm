@@ -3,13 +3,13 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-from sklearn import svm, datasets
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import confusion_matrix
+# from sklearn import svm, datasets
+# from sklearn.model_selection import train_test_split
+# from sklearn.metrics import confusion_matrix
 from sklearn.utils.multiclass import unique_labels
 
 
-def plot_confusion_matrix(y_true, y_pred, classes,
+def plot_confusion_matrix(y_true, y_pred, 
                           normalize=False,
                           title=None,
                           cmap=plt.cm.Blues):
@@ -19,15 +19,17 @@ def plot_confusion_matrix(y_true, y_pred, classes,
     """
     if not title:
         if normalize:
-            title = 'Normalized confusion matrix'
+            # title = 'Normalized confusion matrix'
+            title = 'Confusion matrix'
         else:
-            title = 'Confusion matrix, without normalization'
+            # title = 'Confusion matrix, without normalization'
+            title = 'Confusion matrix'
 
     # Compute confusion matrix
     cm = confusion_matrix(y_true, y_pred)
     # Only use the labels that appear in the data
-    #classes = classes[unique_labels(y_true, y_pred)]
-    classes = classes#['sangat mirip', 'mirip', 'tidak mirip','sangat tidak mirip']
+    classes = classes[unique_labels(y_true, y_pred)]
+    # classes = np.unique(y_true) #classes#['sangat mirip', 'mirip', 'tidak mirip','sangat tidak mirip']
     if normalize:
         cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
         #print("Normalized confusion matrix")
