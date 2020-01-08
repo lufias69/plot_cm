@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 # from sklearn import svm, datasets
 # from sklearn.model_selection import train_test_split
-# from sklearn.metrics import confusion_matrix
+from sklearn.metrics import confusion_matrix
 from sklearn.utils.multiclass import unique_labels
 
 
@@ -28,7 +28,7 @@ def plot_confusion_matrix(y_true, y_pred,
     # Compute confusion matrix
     cm = confusion_matrix(y_true, y_pred)
     # Only use the labels that appear in the data
-    classes = classes[unique_labels(y_true, y_pred)]
+    classes = unique_labels(y_true, y_pred)
     # classes = np.unique(y_true) #classes#['sangat mirip', 'mirip', 'tidak mirip','sangat tidak mirip']
     if normalize:
         cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
